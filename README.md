@@ -122,9 +122,22 @@ Check the performance of implemented tracking algorithm in terms of how far the 
 
 Lower value means higher estimate accurancy.
 
+---
+
+Basic Kalman Filter is already powerful. But it performs poors result when object moves along the non-straight line.
+In order to handle those kinds of issue. Another Model such like CTRV (Constant Turn Rate and Velocity magnitude) can be used.
+
+Moreover, Rather than using Basic Kalman Filter & Extended Kalman Filter, There's another great method named `UKF(Unscented Kalman Filter)` that can greatfully handle non-linear transformation.
+
+The difference between `EKF` and `UKF` is how deal with non-linear measurement/process model.
+
+For that, `UKF` uses an approach that called `Unscented transformation`.
+
 ### Create Sigma Points
 
-Basic Kalman Filter is already powerful. But it assumes that object moves along the straight line.
+
+
+Moreover, As 
 
 
 
