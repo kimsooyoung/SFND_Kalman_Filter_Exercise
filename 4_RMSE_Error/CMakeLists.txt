@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 3.0)
-project(test)
+project(RMSE_Error)
 
 set(MAIN_FILE src/main.cpp) 
 
-add_executable(test ${MAIN_FILE})
+add_executable(RMSE_Error ${MAIN_FILE})
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
-target_link_libraries (test Eigen3::Eigen)
+target_link_libraries (RMSE_Error Eigen3::Eigen)
