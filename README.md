@@ -67,13 +67,73 @@ Kalman Filter process is consist of 2 step
 
 ### 2D Basic Kalman Filter
 
+Same with 1D Kalman Filter, Just Expanded to 3D dimension.
 
+But, In this step use, we'll try to adapt more advanced concept, `Process Covariance Matrix`.
+
+In Real World, None of all objects moves with constant velocity. They're lots of inner/external Powers (Occured by Motor or By 
+someone's kicking...) that makes `Acceleration`. 
+
+In order to consider those acceleration from various directions. An Uncertainty matrix suitable for the model used can be founded.
+
+That Matrix is reffered to `Process Covariance Matrix`
+
+```c++
+
+    // 2. Set the process covariance matrix Q
+    float dt_2 = dt * dt;
+    float dt_3 = dt_2 * dt;
+    float dt_4 = dt_3 * dt;
+    kf_.Q_ = MatrixXd(4, 4);
+    kf_.Q_ << dt_4 * noise_ax / 4, 0, dt_3 * noise_ax / 2, 0,
+        0, dt_4 * noise_ay / 4, 0, dt_3 * noise_ay / 2,
+        dt_3 * noise_ax / 2, 0, dt_2 * noise_ax, 0,
+        0, dt_3 * noise_ay / 2, 0, dt_2 * noise_ay;
+    // 3. Call the Kalman Filter predict() function
+```
+
+See how it can be calculated.
 
 ### Calculate Jabobian
 
+The power of Kalman Filter is came from Gaussian.
+
+Because of the special feature (Uni-Modal) of Gaussian, we could predict certain one objects point.
+
+But Basic Kalman Filter cannot useful when, is used for non-linear transformation.
+
+It's almost impossible to ensure that prediction output produce one object point.
+
+But, It can be solved By linearlizing transformation model by performing [Taylor's Series Expansion](https://en.wikipedia.org/wiki/Taylor_series).
+
+New concept named `Jabobian` need to calulated for that.
+
+Especially, This project shows linearlized transformation between `Lidar` sensed data and `Radar` sensed data.
+
+```c++
+    // check division by zero
+    if (fabs(c1) < 0.0001)
+    {
+        cout << "CalculateJacobian () - Error - Division by Zero" << endl;
+        return Hj;
+    }
+```
+ 
+watch out for division-by-zero
+
 ### RMSE Error 
 
+Check the performance of implemented tracking algorithm in terms of how far the estimated result is from the ground-truth.
+
+`Root Mean Squared Error (RMSE)` is the most common method to do that.
+
+Lower value means higher estimate accurancy.
+
 ### Create Sigma Points
+
+Basic Kalman Filter is already powerful. But it assumes that object moves along the straight line.
+
+
 
 ### Augment Sigma Points 
 
