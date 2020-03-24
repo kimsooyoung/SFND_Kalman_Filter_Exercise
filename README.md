@@ -41,7 +41,6 @@ This repo contains various C++ implementaions From Basic `1D Kalman filter` to `
 ### 1D Basic Kalman Filter
 
 Implements a multi-dimensional Kalman Filter for the example given
-
 Kalman Filter process is consist of 2 step
 
 * Measurement Update Step
@@ -68,12 +67,10 @@ Kalman Filter process is consist of 2 step
 ### 2D Basic Kalman Filter
 
 Same with 1D Kalman Filter, Just Expanded to 3D dimension.
-
 But, In this step use, we'll try to adapt more advanced concept, `Process Covariance Matrix`.
 
 In Real World, None of all objects moves with constant velocity. They're lots of inner/external Powers (Occured by Motor or By 
 someone's kicking...) that makes `Acceleration`. 
-
 In order to consider those acceleration from various directions. An Uncertainty matrix suitable for the model used can be founded.
 
 That Matrix is reffered to `Process Covariance Matrix`
@@ -97,17 +94,14 @@ See how it can be calculated.
 ### Calculate Jabobian
 
 The power of Kalman Filter is came from Gaussian.
-
 Because of the special feature (Uni-Modal) of Gaussian, we could predict certain one objects point.
 
 But Basic Kalman Filter cannot useful when, is used for non-linear transformation.
-
 It's almost impossible to ensure that prediction output produce one object point.
 
 But, It can be solved By linearlizing transformation model by performing [Taylor's Series Expansion](https://en.wikipedia.org/wiki/Taylor_series).
 
 New concept named `Jabobian` need to calulated for that.
-
 Especially, This project shows linearlized transformation between `Lidar` sensed data and `Radar` sensed data.
 
 ```c++
@@ -124,7 +118,6 @@ watch out for division-by-zero
 ### RMSE Error 
 
 Check the performance of implemented tracking algorithm in terms of how far the estimated result is from the ground-truth.
-
 `Root Mean Squared Error (RMSE)` is the most common method to do that.
 
 Lower value means higher estimate accurancy.
