@@ -130,16 +130,38 @@ In order to handle those kinds of issue. Another Model such like CTRV (Constant 
 Moreover, Rather than using Basic Kalman Filter & Extended Kalman Filter, There's another great method named `UKF(Unscented Kalman Filter)` that can greatfully handle non-linear transformation.
 
 The difference between `EKF` and `UKF` is how deal with non-linear measurement/process model.
-
 For that, `UKF` uses an approach that called `Unscented transformation`.
+
+And `UKF` can be splited into three steps.
+
+1. Create `Sigma Points`
+
+2. Predict next state of `Sigma Points` (Just insert them into Process Function)
+
+3. Calculate prediction meam/covariance from predicted sigma points 
+
+Can you get a hunch about `Sigma Point`??
+
+We can approximate predicted mean/covariance through selecting certain few points from original gaussian distribution and applying process step only using them.
+
+Steps below shows about those processes.
 
 ### Create Sigma Points
 
+There's few rules about generating Simga Points.
 
+1. The number of sigma points depends on the state dimension.
 
-Moreover, As 
+2. Select spreading factor. (It is related to how far away from the mean you will choose.)
 
+<img width="324" alt="paper" src="https://user-images.githubusercontent.com/12381733/77551320-8d9ad980-6ef5-11ea-8183-41cb8d7d9ae7.png">
 
+According to formula above, Square Root of certain Matrix Px is required. 
+This can be calculated by given functions in `Eigen` Library.
+
+```c++
+MatrixXd A = P.llt().matrixL();
+```
 
 ### Augment Sigma Points 
 
@@ -155,3 +177,4 @@ Moreover, As
 ### Reference
 
 * [Udacity Sensor Fusion Nanodegree](https://www.udacity.com/course/sensor-fusion-engineer-nanodegree--nd313)
+* [The Unscented Kalman Filter for Nonlinear Estimation](https://www.seas.harvard.edu/courses/cs281/papers/unscented.pdf)
