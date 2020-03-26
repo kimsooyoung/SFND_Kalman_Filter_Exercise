@@ -184,7 +184,7 @@ Augmentation must be considered Before putting Sigma Points into process functio
 
 It can be applied simply by adding noise vector to state vector.
 
-See how can do that.
+See how can implement that.
 
 ```c++
     // create example covariance matrix
@@ -206,6 +206,18 @@ See how can do that.
 
 
 ### Sigma Point Prediction
+
+In this step, We'll gonna insert augmented Sigma Points that had been created at previous step into process model.
+Pay attention to the dimension of state vectors.
+
+This exercise uses `CTRV` model, So Input vector dimension is 7 (5 state dimension + 2 augmented dimension).
+And the output vector dimension will be 5 (same with dimension of `CTRV` model)
+
+Here's Helpful Equation for calculating predicted sigma points.
+
+<img width="846" alt="helpful_equation" src="https://user-images.githubusercontent.com/12381733/77659910-fea4c480-6fbb-11ea-850e-515db99d9b89.png">
+
+Be careful that there are exceptions.
 
 ### Predicted Mean Covariance 
 
