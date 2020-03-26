@@ -156,6 +156,10 @@ There's few rules about generating Simga Points.
 
 1. The number of sigma points depends on the state dimension.
 
+If your state vector has 5 states, you must select 5 * 2 + 1 = **11** points.
+
+Generally, If your state vector has `N` states, you must select `2 * N + 1` sigma points.
+
 2. Select spreading factor. (It is related to how far away from the mean you will choose.)
 
 <img width="324" alt="paper" src="https://user-images.githubusercontent.com/12381733/77551320-8d9ad980-6ef5-11ea-8183-41cb8d7d9ae7.png">
@@ -168,6 +172,13 @@ MatrixXd A = P.llt().matrixL();
 ```
 
 ### Augment Sigma Points 
+
+Augmentation must be considered Before putting Sigma Points into process function.
+`Augmentation` means considering process noise vector. And this also has a non-linear effect. 
+
+It can be done simply by adding noise vector to state vector.
+And 
+
 
 ### Sigma Point Prediction
 
