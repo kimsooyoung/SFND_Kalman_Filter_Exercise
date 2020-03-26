@@ -156,6 +156,11 @@ There's few rules about generating Simga Points.
 
 1. The number of sigma points depends on the state dimension.
 
+```c++
+    // create sigma point matrix
+    MatrixXd Xsig_aug = MatrixXd(n_aug, 2 * n_aug + 1);
+```
+
 If your state vector has 5 states, you must select 5 * 2 + 1 = **11** points.
 
 Generally, If your state vector has `N` states, you must select `2 * N + 1` sigma points.
@@ -174,10 +179,29 @@ MatrixXd A = P.llt().matrixL();
 ### Augment Sigma Points 
 
 Augmentation must be considered Before putting Sigma Points into process function.
+
 `Augmentation` means considering process noise vector. And this also has a non-linear effect. 
 
 It can be done simply by adding noise vector to state vector.
-And 
+See how can do that.
+
+```c++
+    // create example covariance matrix
+    MatrixXd P = MatrixXd(n_x, n_x);
+    P << 0.0043, -0.0013, 0.0030, -0.0022, -0.0020,
+        -0.0013, 0.0077, 0.0011, 0.0071, 0.0060,
+        0.0030, 0.0011, 0.0054, 0.0007, 0.0008,
+        -0.0022, 0.0071, 0.0007, 0.0098, 0.0100,
+        -0.0020, 0.0060, 0.0008, 0.0100, 0.0123;
+ 
+    ...
+   
+    // create augmented covariance matrix
+    P_aug.fill(0.0);
+    P_aug.topLeftCorner(5, 5) = P;
+    P_aug(5, 5) = std_a * std_a;
+    P_aug(6, 6) = std_yawdd * std_yawdd;
+```
 
 
 ### Sigma Point Prediction
