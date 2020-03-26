@@ -180,9 +180,10 @@ MatrixXd A = P.llt().matrixL();
 
 Augmentation must be considered Before putting Sigma Points into process function.
 
-`Augmentation` means considering process noise vector. And this also has a non-linear effect. 
+`Augmentation` means considering process noise vector. And this also has a non-linear effect. (In CTRV model, It'll be noise about acceleration and yaw acceleration)
 
-It can be done simply by adding noise vector to state vector.
+It can be applied simply by adding noise vector to state vector.
+
 See how can do that.
 
 ```c++
