@@ -120,6 +120,10 @@ watch out for division-by-zero
 Check the performance of implemented tracking algorithm in terms of how far the estimated result is from the ground-truth.
 `Root Mean Squared Error (RMSE)` is the most common method to do that.
 
+![rmse_error](https://user-images.githubusercontent.com/12381733/77613266-9e873180-6f6d-11ea-9823-a955b5613862.PNG)
+
+[Image Source](https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2018/05/rmse.png)
+
 Lower value means higher estimate accurancy.
 
 ---
