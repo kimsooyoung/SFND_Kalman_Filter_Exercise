@@ -120,9 +120,9 @@ watch out for division-by-zero
 Check the performance of implemented tracking algorithm in terms of how far the estimated result is from the ground-truth.
 `Root Mean Squared Error (RMSE)` is the most common method to do that.
 
-![rmse_error](https://user-images.githubusercontent.com/12381733/77613266-9e873180-6f6d-11ea-9823-a955b5613862.PNG)
+<img width="324" alt="paper" src="https://user-images.githubusercontent.com/12381733/77613266-9e873180-6f6d-11ea-9823-a955b5613862.PNG">
 
-[Image Source](https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2018/05/rmse.png)
+[_Image Source_](https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2018/05/rmse.png)
 
 Lower value means higher estimate accurancy.
 
@@ -221,7 +221,32 @@ Be careful that there are exceptions.
 
 ### Predicted Mean Covariance 
 
+The standard rule for calculating predicted mean and covariance of a group of state samples is given by these equations.
+Not just same as basic mean/covariance calcuation, there's additional weights in each step.
+There's several suggestions about that. But this example stick with rules from literature.
+
+<img width="1253" alt="predicted_mean_covariance" src="https://user-images.githubusercontent.com/12381733/77661289-c7371780-6fbd-11ea-8387-f56b2c2dcbd2.png">
+
+
+```c++
+    // create vector for weights
+    VectorXd weights = VectorXd(2 * n_aug + 1);
+
+    // create vector for predicted state
+    VectorXd x = VectorXd(n_x);
+
+    // create covariance matrix for prediction
+    MatrixXd P = MatrixXd(n_x, n_x);
+```
+
+Calculate `P` and `x` and `weights` with given parameters
+
+> Be aware that there's angel subtracting in calculation. 
+
+
 ### Predict Radar Measurement
+
+
 
 ### UKF Update
 ---
