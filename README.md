@@ -255,7 +255,8 @@ But our predicted mean and covariance elements have different dimension and also
 So, need to transform them into the radar measurement space.
 See how it can be calculated.
 
-![measurement_model](https://user-images.githubusercontent.com/12381733/77735142-59d2c780-704d-11ea-879c-e0a1b82eafe8.PNG)
+
+<img width="800" alt="predicted_mean_covariance" src="https://user-images.githubusercontent.com/12381733/77735142-59d2c780-704d-11ea-879c-e0a1b82eafe8.PNG">
 
 Hold on, This transformation is also non-linear transformation :( 
 Should we need to do things that we've done before?? (Create Sigma Points, Augmentaion, Prediction...)
