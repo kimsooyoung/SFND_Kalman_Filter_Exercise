@@ -260,11 +260,10 @@ See how it can be calculated.
 
 Hold on, This transformation is also non-linear transformation :( 
 Should we need to do things that we've done before?? (Create Sigma Points, Augmentaion, Prediction...)
+
 Actually, **No** :) Sigma Points are already created and Measurement noise are purely additive factor.
 
 So, The only things must be done in this step is transforming into radar measurement space and add the measurement covariance noise.
-
-
 
 ### UKF Update
 ---
