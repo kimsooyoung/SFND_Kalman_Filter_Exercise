@@ -215,7 +215,7 @@ And the output vector dimension will be 5 (same with dimension of `CTRV` model)
 
 Here's Helpful Equation for calculating predicted sigma points.
 
-<img width="846" alt="helpful_equation" src="https://user-images.githubusercontent.com/12381733/77659910-fea4c480-6fbb-11ea-850e-515db99d9b89.png">
+<img width="600" alt="helpful_equation" src="https://user-images.githubusercontent.com/12381733/77659910-fea4c480-6fbb-11ea-850e-515db99d9b89.png">
 
 Be careful that there are exceptions.
 
@@ -225,7 +225,7 @@ The standard rule for calculating predicted mean and covariance of a group of st
 Not just same as basic mean/covariance calcuation, there's additional weights in each step.
 There's several suggestions about that. But this example stick with rules from literature.
 
-<img width="1253" alt="predicted_mean_covariance" src="https://user-images.githubusercontent.com/12381733/77661289-c7371780-6fbd-11ea-8387-f56b2c2dcbd2.png">
+<img width="1000" alt="predicted_mean_covariance" src="https://user-images.githubusercontent.com/12381733/77661289-c7371780-6fbd-11ea-8387-f56b2c2dcbd2.png">
 
 
 ```c++
@@ -245,6 +245,23 @@ Calculate `P` and `x` and `weights` with given parameters
 
 
 ### Predict Radar Measurement
+
+This example assumes that our system has 5 dimensional state vector. (According to CTRV Model)
+And let's think about the situation that we'd like to update our state vector by using Radar sensor.
+
+Radar sensor gives us 3 data. Distance from object, Yaw angle from object, velocity of object.
+But our predicted mean and covariance elements have different dimension and also different unit from them.
+
+So, need to transform them into the radar measurement space.
+See how it can be calculated.
+
+![measurement_model](https://user-images.githubusercontent.com/12381733/77735142-59d2c780-704d-11ea-879c-e0a1b82eafe8.PNG)
+
+Hold on, This transformation is also non-linear transformation :( 
+Should we need to do things that we've done before?? (Create Sigma Points, Augmentaion, Prediction...)
+Actually, **No** :) Sigma Points are already created and Measurement noise are purely additive factor.
+
+So, The only things must be done in this step is transforming into radar measurement space and add the measurement covariance noise.
 
 
 
