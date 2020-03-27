@@ -225,7 +225,7 @@ The standard rule for calculating predicted mean and covariance of a group of st
 Not just same as basic mean/covariance calcuation, there's additional weights in each step.
 There's several suggestions about that. But this example stick with rules from literature.
 
-<img width="1000" alt="predicted_mean_covariance" src="https://user-images.githubusercontent.com/12381733/77661289-c7371780-6fbd-11ea-8387-f56b2c2dcbd2.png">
+<img width="800" alt="predicted_mean_covariance" src="https://user-images.githubusercontent.com/12381733/77661289-c7371780-6fbd-11ea-8387-f56b2c2dcbd2.png">
 
 
 ```c++
